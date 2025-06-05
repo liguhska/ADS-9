@@ -1,18 +1,14 @@
 // Copyright 2022 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "tree.h"
 
 #include <algorithm>
 #include <stdexcept>
+#include  "tree.h"
 
 size_t PMTree::factorial(size_t n) const {
 	return (n == 1 || n == 0) ? 1 : factorial(n - 1) * n;
 }
 
-PMTree::PMTree(const  std::vector<char>& elements) {
+PMTree::PMTree(const std::vector<char>& elements) {
 	if (elements.empty()) {
 		root = nullptr;
 		total_permutations = 0;
@@ -25,7 +21,7 @@ PMTree::PMTree(const  std::vector<char>& elements) {
 	buildTree(root, elements);
 }
 
-void PMTree::buildTree(std::shared_ptr<node> parent, const std::_Adjust_manually_vector_aligned<char>& remaining) {
+void PMTree::buildTree(std::shared_ptr<node> parent, const std::vector<char>& remaining) {
 	if (remaining.empty()) {
 		return;
 	}
