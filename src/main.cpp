@@ -1,9 +1,9 @@
 // Copyright 2022 NNTU-CS
-#include "tree.h"
-#include <iostream>
 #include <chrono>
+#include <iostream>
 #include <random>
-#include <algorithm>
+#include <vector>
+#include "tree.h"
 
 void printPermutations(const std::vector<char>& elements) {
   PMTree tree(elements);
@@ -27,23 +27,23 @@ void printPermutations(const std::vector<char>& elements) {
 void runExperiment(int max_n) {
   std::random_device rd;
   std::mt19937 gen(rd());
-  for (int n = 1; n <= max_n; ++n)
-  {
+  for (int n = 1; n <= max_n; ++n) {
     std::vector<char> elements;
-    for (int i = 0; i < n; ++i)
-    {
+    for (int i = 0; i < n; ++i) {
       elements.push_back('1' + i);
     }
 
     auto start = std::chrono::high_resolution_clock::now();
     PMTree tree(elements);
     auto end = std::chrono::high_resolution_clock::now();
-    auto build_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    auto build_time = std::chrono::duration_cast<std::chrono::milliseconds>
+    (end - start).count();
 
     start = std::chrono::high_resolution_clock::now();
     auto all_perms = getAllPerms(tree);
     end = std::chrono::high_resolution_clock::now();
-    auto all_perms_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    auto all_perms_time = std::chrono::duration_cast<std::chrono::milliseconds>
+    (end - start).count();
 
     const int num_tests = 10;
     std::vector<int> test_nums(num_tests);
@@ -56,7 +56,8 @@ void runExperiment(int max_n) {
       auto perm = getPerm1(tree, num);
     }
     end = std::chrono::high_resolution_clock::now();
-    auto get_perm1_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    auto get_perm1_time = std::chrono::duration_cast<std::chrono::milliseconds>
+    (end - start).count();
 
     start = std::chrono::high_resolution_clock::now();
     for (int num : test_nums) {
@@ -64,10 +65,11 @@ void runExperiment(int max_n) {
     }
 
     end = std::chrono::high_resolution_clock::now();
-    auto get_perm2_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    auto get_perm2_time = std::chrono::duration_cast<std::chrono::milliseconds>
+    (end - start).count();
 
-    std::cout << n << "\t" << all_perms.size() << "\t\t" << all_perms_time << 
-	    "\t\t\t" << get_perm1_time << "\t\t" << get_perm2_time << "\n";
+    std::cout << n << "\t" << all_perms.size() << "\t\t" << all_perms_time <<
+    "\t\t\t" << get_perm1_time << "\t\t" << get_perm2_time << "\n";
   }
 }
 
