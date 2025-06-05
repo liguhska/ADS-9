@@ -25,7 +25,7 @@ public:
 	PMTree(const std::vector<char>& elements);
 	~PMTree() = default;
 
-	std::shared_ptr<node> getRoor() const { return root; }
+	std::shared_ptr<node> getRoot() const { return root; }
 	size_t getTotalPermutations() const { return total_permutations; }
 
 private:
