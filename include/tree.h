@@ -6,26 +6,25 @@
 
 class PMTree {
 public:
-	struct node
-	{
-		char value;
-		std::vector<std::shared_ptr<node>> children;
+  struct node
+  {
+    char value;
+    std::vector<std::shared_ptr<node>> children;
+    node(char val) : value(val) {}
+  };
 
-		node(char val) : value(val) {}
-	};
+  PMTree(const std::vector<char>& elements);
+  ~PMTree() = default;
 
-	PMTree(const std::vector<char>& elements);
-	~PMTree() = default;
-
-	std::shared_ptr<node> getRoot() const { return root; }
-	size_t getTotalPermutations() const { return total_permutations; }
+  std::shared_ptr<node> getRoot() const { return root; }
+  size_t getTotalPermutations() const { return total_permutations; }
 
 private:
-	std::shared_ptr<node> root;
-	size_t total_permutations;
+  std::shared_ptr<node> root;
+  size_t total_permutations;
 
-	void buildTree(std::shared_ptr<node> parent, const std::vector<char>& remaining);
-	size_t factorial(size_t n) const;
+  void buildTree(std::shared_ptr<node> parent, const std::vector<char>& remaining);
+  size_t factorial(size_t n) const;
 };
 
 std::vector<std::vector<char>> getAllPerms(const PMTree& tree);
