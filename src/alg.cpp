@@ -66,7 +66,7 @@ void collectPerms(std::shared_ptr<PMTree::node> root, std::vector<char>& current
 	}
 }
 
-std::vector<std::vector<char>> getAllPerms(const PMtree& tree) {
+std::vector<std::vector<char>> getAllPerms(const PMTree& tree) {
 	std::vector<std::vector<char>> result;
 	if (!tree.getRoot()) {
 		return result;
