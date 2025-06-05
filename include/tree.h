@@ -3,15 +3,7 @@
 #define INCLUDE_TREE_H_
 #include <vector>
 #include <memory>
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <utility>
-#include <fstream>
-#include <cctype>
-#include <algorithm>
-#include <vector>
-using namespace std;
+
 class PMTree {
 public:
 	struct node
