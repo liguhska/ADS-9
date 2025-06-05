@@ -9,10 +9,10 @@ class PMTree {
   struct node {
     char value;
     std::vector<std::shared_ptr<node>> children;
-    node(char val) : value(val) {}
+    explicit node(char val) : value(val) {}
   };
 
-  PMTree(const std::vector<char>& elements);
+  explicit PMTree(const std::vector<char>& elements);
   ~PMTree() = default;
 
   std::shared_ptr<node> getRoot() const { return root; }
@@ -22,7 +22,7 @@ class PMTree {
   std::shared_ptr<node> root;
   size_t total_permutations;
 
-  void buildTree(std::shared_ptr<node> parent, 
+  void buildTree(std::shared_ptr<node> parent,
 const std::vector<char>& remaining);
   size_t factorial(size_t n) const;
 };
