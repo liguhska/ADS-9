@@ -1,7 +1,9 @@
 // Copyright 2022 NNTU-CS
 
 #include <algorithm>
+#include <memory>
 #include <stdexcept>
+#include <vector>
 #include  "tree.h"
 
 size_t PMTree::factorial(size_t n) const {
@@ -21,7 +23,8 @@ PMTree::PMTree(const std::vector<char>& elements) {
   buildTree(root, elements);
 }
 
-void PMTree::buildTree(std::shared_ptr<node> parent, const std::vector<char>& remaining) {
+void PMTree::buildTree(std::shared_ptr<node> parent,
+const std::vector<char>& remaining) {
   if (remaining.empty()) {
     return;
   }
@@ -44,7 +47,9 @@ void PMTree::buildTree(std::shared_ptr<node> parent, const std::vector<char>& re
   }
 }
 
-void collectPerms(std::shared_ptr<PMTree::node> root, std::vector<char>& current, std::vector<std::vector<char>>& result) {
+void collectPerms(std::shared_ptr<PMTree::node> root,
+std::vector<char>& current,
+std::vector<std::vector<char>>& result) {
   if (root->value != '\0') {
     current.push_back(root->value);
   }
@@ -81,7 +86,8 @@ std::vector<char> getPerm1(const PMTree& tree, int num) {
   return all_perms[num - 1];
 }
 
-bool findPermByNum(std::shared_ptr<PMTree::node> root, int& remaining, std::vector<char>& result, int target_num) {
+bool findPermByNum(std::shared_ptr<PMTree::node> root, int& remaining,
+std::vector<char>& result, int target_num) {
   if (root->value != '\0') {
     result.push_back(root->value);
   }
@@ -106,7 +112,8 @@ bool findPermByNum(std::shared_ptr<PMTree::node> root, int& remaining, std::vect
 }
 
 std::vector<char> getPerm2(const PMTree& tree, int num) {
-  if (num < 1 || static_cast<size_t>(num) > tree.getTotalPermutations() || !tree.getRoot()) {
+  if (num < 1 || static_cast<size_t>(num) > tree.getTotalPermutations() ||
+    !tree.getRoot()) {
     return {};
   }
 
